@@ -68,38 +68,30 @@ export const Filter: React.FunctionComponent<IFilterProps> = (props: React.Props
             isFooterAtBottom={true}
         > */}
             <Flex column gap='gap.medium'>
-                <Flex gap='gap.medium'>
-                    <Flex column style={{minWidth:350}} >
-                        <Text content="Body Serach" />
-                        <SearchBox placeholder="Search" value={searchText} onChange={(_,newValue)=>setSearchText(newValue)} />
-                    </Flex>
-                    <Flex column style={{minWidth:300}}>
+                <Flex gap='gap.medium' style={{justifyContent:'center', alignItems:'center'}}>
+                        <Text content="Body Search" />
+                        <SearchBox placeholder="Search" value={searchText} style={{minWidth:250}} onChange={(_,newValue)=>setSearchText(newValue)} />
                         <Text content="From" />
+                        <div style={{minWidth:250}}>
                         <PeoplePicker userIds={props.allChatMessage.filter(t=>t.from && t.from.user).map((t)=>t.from.user.id)}
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         selectionChanged={(e:any)=>setFromUser(e.target.selectedPeople)} selectedPeople={fromUser} />
-                    </Flex>
-                    <Flex column style={{minWidth:300}}>
+                        </div>
                         <Text content="Mentions" />
+                        <div style={{minWidth:250}}>
                         <PeoplePicker  userIds={[].concat(...props.allChatMessage.filter(t=>t.mentions.length > 0).map((t)=>t.mentions.filter(m=>m.mentioned.user).map((m)=>m.mentioned.user.id)))}
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         selectionChanged={(e:any)=>setMentionedUser(e.target.selectedPeople)} selectedPeople={mentionedUser} />
-                    </Flex>
+                        </div>
                 </Flex>
-                <Flex gap='gap.medium' style={{marginBottom:10}}>
-                    <Flex column style={{minWidth:300}}>
+                <Flex gap='gap.medium' style={{marginBottom:10, justifyContent:'center', alignItems:'center'}}>
                         <Text content="From Date" />
                         <DatePicker firstDayOfWeek={DayOfWeek.Monday} placeholder="Select a From date..."
-                        onSelectDate={(date)=>setFromDate(date)} initialPickerDate={fromDate} value={fromDate} />
-                    </Flex>
-                    <Flex column style={{minWidth:300}}>
+                        onSelectDate={(date)=>setFromDate(date)} initialPickerDate={fromDate} value={fromDate} style={{minWidth:250}} />
                         <Text content="To Date" />
                         <DatePicker firstDayOfWeek={DayOfWeek.Monday} placeholder="Select a To date..." 
-                        onSelectDate={(date)=>setToDate(date)} initialPickerDate={toDate} value={toDate} />
-                    </Flex>
-                    <Flex column vAlign='end' style={{minWidth:135}}>
+                        onSelectDate={(date)=>setToDate(date)} initialPickerDate={toDate} value={toDate} style={{minWidth:250}} />
                         <Checkbox label="Attachments" checked={onlyAttachment} onChange={(_,checked)=>setOnlyAttachment(checked)}  />
-                    </Flex>
                     {onRenderFooterContent()}
                 </Flex>
             </Flex>

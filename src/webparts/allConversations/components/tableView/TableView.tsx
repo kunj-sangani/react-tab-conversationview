@@ -33,8 +33,8 @@ export const TableView: React.FunctionComponent<ITableViewProps> = (props: React
 
 const columns: IColumn[] = [
     {
-        key: 'column3',
-        name: 'createdBy',
+        key: 'column1',
+        name: 'From',
         minWidth: 200,
         maxWidth: 200,
         isResizable: true,
@@ -44,11 +44,12 @@ const columns: IColumn[] = [
         )
     },
     {
-        key: 'column1',
+        key: 'column2',
         name: 'Message',
         minWidth: 300,
         maxWidth: 300,
-        isResizable: true,
+        
+        isResizable: false,
         isCollapsible: true,
         onRender: (chatMessage: GraphChatMessage) => (
         <ReadMoreAndLess
@@ -62,17 +63,20 @@ const columns: IColumn[] = [
         )
     },
     {
-        key: 'column2',
-        name: 'created Date Time',
+        key: 'column3',
+        name: 'Message Date',
         fieldName: 'createdDateTime',
         minWidth: 100,
         maxWidth: 100,
         isResizable: true,
-        isCollapsible: true
+        isCollapsible: true,
+        onRender :(chatMessage: GraphChatMessage) => (
+            <div>{new Date(chatMessage.createdDateTime).toLocaleString("en-us")}</div>
+        )
     },
     {
         key: 'column4',
-        name: 'attachment',
+        name: 'Attachment',
         minWidth: 100,
         maxWidth: 100,
         isResizable: true,
@@ -82,23 +86,12 @@ const columns: IColumn[] = [
                 {
                     chatMessage.attachments && chatMessage.attachments.map((at:ChatMessageAttachment,
                     attachmentIndex:number) => 
-                        <a key ={`attachment${attachmentIndex}`} style={{cursor:'pointer'}} onClick={() => 
+                        <a key ={`attachment${attachmentIndex}`} style={{cursor:'pointer', 
+                        textDecoration:'underline', color:'blue'}} onClick={() => 
                         props.graphService.spcontext.sdks.microsoftTeams.teamsJs.app.openLink(at.contentUrl)} >{at.name}</a>
                     )
                 }
             </div>
-        )
-    },
-    {
-        key: 'column5',
-        name: 'Go to Message',
-        minWidth: 100,
-        maxWidth: 100,
-        isResizable: true,
-        isCollapsible: true,
-        onRender: (chatMessage: GraphChatMessage) => (
-            <ExpandIcon onClick={()=> props.graphService.spcontext
-                .sdks.microsoftTeams.teamsJs.app.openLink(chatMessage.webUrl)} />
         )
     },
     {
@@ -110,6 +103,18 @@ const columns: IColumn[] = [
         isCollapsible: true,
         onRender: (chatMessage: GraphChatMessage) => (
             !props.expandedMessageId && <ReplyIcon onClick={()=>props.getMessageReply(chatMessage.id)} />
+        )
+    },
+    {
+        key: 'column6',
+        name: 'Go to Message',
+        minWidth: 100,
+        maxWidth: 100,
+        isResizable: true,
+        isCollapsible: true,
+        onRender: (chatMessage: GraphChatMessage) => (
+            <ExpandIcon onClick={()=> props.graphService.spcontext
+                .sdks.microsoftTeams.teamsJs.app.openLink(chatMessage.webUrl)} />
         )
     }
 ];

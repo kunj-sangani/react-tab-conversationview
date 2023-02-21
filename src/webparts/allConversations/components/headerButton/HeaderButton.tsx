@@ -14,6 +14,7 @@ export const HeaderButton: React.FunctionComponent<IHeaderButtonProps> = (props:
         {/* <FlexItem>
             <Button icon={<FilterIcon/>} content="Filter" onClick={()=>props.flipFilterPanel(true)} />
         </FlexItem> */}
+        <h1>Search conversation</h1>
         <FlexItem push>
             <Button.Group
                 buttons={[

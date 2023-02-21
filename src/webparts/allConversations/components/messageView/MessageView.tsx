@@ -123,7 +123,9 @@ export const MessageView: React.FunctionComponent<IMessageViewProps> = (props: R
                       )
                     }
                   </div>
-                </div>} timestamp={chatMessage.createdDateTime} badge={chatMessage.mentions.length > 0 &&
+                </div>} 
+                timestamp={new Date(chatMessage.createdDateTime).toLocaleString("en-us")} 
+                badge={chatMessage.mentions.length > 0 && chatMessage.mentions.filter(t=>t.mentioned.user.id===props.graphService.spcontext.sdks.microsoftTeams.context.userObjectId).length > 0 &&
                  {icon: <MentionIcon />}} />
                 }
                 gutter={<Person key={`personKey${index}`} userId={chatMessage.from.user.id} view={ViewType.image} />}

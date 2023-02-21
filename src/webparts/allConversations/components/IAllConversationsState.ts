@@ -9,6 +9,7 @@ export interface IAllConversationsState{
     filteredRepliedMessage: ChatMessage[];
     isFilterOpen: boolean;
     viewName:ViewName;
+    isLoading: boolean;
 }
 
 export enum ViewName{

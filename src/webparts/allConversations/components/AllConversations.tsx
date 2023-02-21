@@ -30,7 +30,8 @@ export default class AllConversations extends React.Component<IAllConversationsP
       allRepliedMessage:[],
       filteredRepliedMessage:[],
       isFilterOpen: true,
-      viewName: ViewName.Grid
+      viewName: ViewName.Grid,
+      isLoading: true
     }
   }
 
@@ -58,8 +59,9 @@ export default class AllConversations extends React.Component<IAllConversationsP
       console.log(initialMessage);
       if(!!initialMessage['@odata.nextLink']){
         this.setState({nextLink:initialMessage['@odata.nextLink']});
+        await this.getLoadMoreData();
       }else{
-        this.setState({nextLink:''});
+        this.setState({nextLink:'', isLoading:false});
       }
       if(initialMessage.value.length > 0){
         let tempAllChatMessage = this.state.allChatMessage;
@@ -82,8 +84,9 @@ export default class AllConversations extends React.Component<IAllConversationsP
       console.log(initialMessage);
       if(!!initialMessage['@odata.nextLink']){
         this.setState({nextLink:initialMessage['@odata.nextLink']});
+        await this.getLoadMoreData();
       }else{
-        this.setState({nextLink:''})
+        this.setState({nextLink:'', isLoading: false})
       }
       if(initialMessage.value.length > 0){
         this.setState({allChatMessage:initialMessage.value, filteredMessage: initialMessage.value});
@@ -170,7 +173,7 @@ export default class AllConversations extends React.Component<IAllConversationsP
           {this.state.viewName === ViewName.Table && <TableView dtaaFilteredMessage={dtaaFilteredMessage} 
           dtaaFilteredMessageData={dtaaFilteredMessageData} graphService={this.props.graphService} expandedMessageId={this.state.expandedMessageId}
           getMessageReply={this.getMessageReply}/>}
-        {!!this.state.nextLink && 
+        {!!this.state.nextLink && !this.state.expandedMessageId && !this.state.isLoading &&
         <div className={styles.loadMoreWrapper}>
           <PrimaryButton text="Load More" onClick={() => this.getLoadMoreData()} className={styles.PrimaryButtonNext} />
           </div>

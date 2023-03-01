@@ -18,10 +18,16 @@ This sample webpart is developed to display the Microsoft Team's channel's conve
     - Based on mentions(who all were mentioned in that message)
     - From and To date
     - With Attachments
-- Display options - Chat format vs  Tablular view
+- Display options - Chat format vs  Tabular view
 - Ability to use same filters on all the replies
+- Icon on message where current user is mentioned.
 
-[picture of the solution in action, if possible]
+
+![Main View](./assets/1.png)
+
+![Tabular View](./assets/2.png)
+
+![View Replies](./assets/3.png)
 
 ## Used SharePoint Framework Version
 
@@ -35,6 +41,12 @@ This sample webpart is developed to display the Microsoft Team's channel's conve
 > Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
 
 ## Prerequisites
+
+- As we are using MGT-Toolkit for SPFx, we need to make sure below SPPKG solution is deployed on tenant before current package can be used.
+
+[MGT SPFx](https://learn.microsoft.com/en-us/graph/toolkit/get-started/mgt-spfx#prerequisites)
+
+[Download Latest Package](https://github.com/microsoftgraph/microsoft-graph-toolkit/releases)
 
 > Following Microsoft Graph permissions needs to be approved after uploading the package in the App Catalog
 
@@ -53,7 +65,7 @@ This sample webpart is developed to display the Microsoft Team's channel's conve
 
 | Version | Date             | Comments        |
 | ------- | ---------------- | --------------- |
-| 1.0     | Feb 21, 2023 | Initial release |
+| 1.0     | March 1st , 2023 | Initial release |
 
 ## Disclaimer
 
@@ -69,11 +81,13 @@ This sample webpart is developed to display the Microsoft Team's channel's conve
   - **npm install**
   - **gulp serve**
 
-> As this SPFx webpart only works with in Teams's context, please follow below links to deploy it to tenant and make it available in Microsoft Teams
+As this SPFx webpart only works with in Teams's context, please follow below links to deploy it to tenant and make it available in Microsoft Teams
 
 [Package and Deploy](https://learn.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/using-web-part-as-ms-teams-tab#package-and-deploy-your-web-part-to-sharepoint)
+
 [Making the web part availble in Teams](https://learn.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/using-web-part-as-ms-teams-tab#make-the-web-part-available-in-microsoft-teams)
 
+if you want to use ready made package solution you can download it from [here](./assets/tab-conversations.sppkg)
 
 ## Concept Explored
 
@@ -84,10 +98,6 @@ This extension illustrates the following concepts:
 - Usage of React North Start library SPFx
 - Calling Graph API in SPFx
 - Concept of using Teams's Aware Logic in SPFx
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
 
 ## References
 
